@@ -5,9 +5,11 @@ import { PieChart } from "react-minimal-pie-chart";
 import { GetTotal } from "./Totals";
 
 function SpendingBox({ donationsArray }) {
+ 
+  //function to get total for each catagory
   function CatagoryTotal(catagory) {
     const newarr = donationsArray.filter(
-      (item) => catagories[item.catagory].name == catagory
+      (item) => catagories[item.catagory].name === catagory
     );
     return newarr.length > 0 ? GetTotal(newarr) : 0;
   }
@@ -51,9 +53,9 @@ function SpendingBox({ donationsArray }) {
         </span>
       </div>
       <div className="pie-chart__labels">
-        {catagories.map((catagory) => {
+        {catagories.map((catagory, index) => {
           return (
-            <div className="pie-chart__labels-item">
+            <div className="pie-chart__labels-item" key={index}>
               <div className="label">
                 <div className={`label__color ${catagory.class}`}></div>
                 {catagory.name}

@@ -1,0 +1,44 @@
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.transaction-form input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type="date"] {
+  margin-left: 0px;
+}
+
+input[type="radio"] {
+  display: inline !important;
+  width: auto !important;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.short {
+  display: inline;
+  margin-left: 5px;
+}
+.error {
+  color: red !important;
+}
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-gray {
+  background-color: white;
+  color: gray;
+  border: 2px solid gray;
+}

@@ -138,6 +138,7 @@ tr > td:first-child {
 
 .dates {
   display: flex;
+  align-self: baseline;
 }
 
 /* -------------- PIE CHART -------------- */

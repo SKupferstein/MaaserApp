@@ -1,7 +1,8 @@
 import "./SideNav_Item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function SideNav_Item({ tag, icon, updatePage, page }) {
+function SideNavItem({ tag, icon, updatePage, page }) {
+  //update page:
   function clickNavHandler(tag) {
     updatePage(tag);
   }
@@ -9,7 +10,7 @@ function SideNav_Item({ tag, icon, updatePage, page }) {
     <li
       onClick={() => clickNavHandler(tag)}
       className={`side-nav__item ${
-        page == tag ? "side-nav__item-active" : ""
+        page === tag ? "side-nav__item-active" : ""
       } `}
     >
       <FontAwesomeIcon icon={icon} />
@@ -18,4 +19,4 @@ function SideNav_Item({ tag, icon, updatePage, page }) {
   );
 }
 
-export default SideNav_Item;
+export default SideNavItem;

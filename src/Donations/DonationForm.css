@@ -1,0 +1,134 @@
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.transaction-form input,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type="date"] {
+  margin-left: 0px;
+}
+
+.pie-chart {
+  height: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#my-pie-chart {
+  height: 220px;
+  width: 220px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ffacb7 0,
+    15.34%,
+    #cc6ff8 15.34% 26.21%,
+    #7c5cfc 26.21% 42.37%,
+    #eb7ca6 42.37% 100%
+  );
+}
+
+.spending-box {
+  position: relative;
+}
+
+.overall-spending {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 32%;
+  left: 50%;
+  text-align: center;
+}
+
+.overall-spending > h4 {
+  color: #596780;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.overall-spending > span {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+}
+
+.pie-chart__labels {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  margin-top: 40px;
+}
+
+.pie-chart__labels-item {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.pie-chart__labels-item,
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  gap: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #596780;
+}
+
+.label__color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.first {
+  background: #eb7ca6;
+}
+
+.second {
+  background: #ffacc8;
+}
+
+.third {
+  background: #cc6ff8;
+}
+
+.fourth {
+  background: #7c5cfc;
+}
+
+.fifth {
+  background: #5caffc;
+}
+
+.sixth {
+  background: #a1a9fe;
+}
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-gray {
+  background-color: white;
+  color: gray;
+  border: 2px solid gray;
+}

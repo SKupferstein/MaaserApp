@@ -8,6 +8,11 @@
   align-items: center;
 }
 
+.dates {
+  display: flex;
+  margin-left: 0px;
+}
+
 /* -------------- SEARCH -------------- */
 .search {
   display: flex;
@@ -104,6 +109,53 @@
 
 .year-selector {
   display: flex;
+  align-self: flex-start;
   align-items: center;
   gap: 24px;
+}
+
+/* -------------- BAR CHART -------------- */
+.bar-chart {
+  max-height: 223px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.date-selector {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c3d4e9;
+  border-radius: 6px;
+}
+
+.right {
+  text-align: right;
+}
+
+.date-selector span {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  margin-left: 8px;
+}
+.logoutPopUp {
+  width: 20%;
+  height: 20%;
+  position: absolute !important;
+  top: 30px !important;
+  right: 30px !important;
+  background-color: white;
+  backface-visibility: visible;
+  padding: 25px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.footer-container {
+  margin-top: 10px !important;
+}
+.wb {
+  margin-top: 20px !important;
 }

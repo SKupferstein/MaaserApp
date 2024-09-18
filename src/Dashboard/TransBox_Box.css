@@ -1,0 +1,26 @@
+tr {
+  width: 100%;
+  text-align: left;
+  vertical-align: text-bottom;
+}
+.icon {
+  padding: 7px;
+  margin: 5px;
+  border-radius: 7px;
+}
+.remove {
+  color: red;
+  border: 2px solid red;
+}
+.remove:hover {
+  background-color: red;
+  color: white;
+}
+.edit {
+  color: #7c5cfc;
+  border: 2px solid #7c5cfc;
+}
+.edit:hover {
+  background-color: #7c5cfc;
+  color: white;
+}

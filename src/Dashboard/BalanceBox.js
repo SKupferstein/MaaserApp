@@ -4,8 +4,11 @@ import { faCircleDollarToSlot } from "@fortawesome/free-solid-svg-icons";
 import { numberSettings } from "../NumberSettings";
 import { GetTotal } from "./Totals";
 
-function BalanceBox({ incomeArray, donationsArray }) {
-  const incomToMaaser = incomeArray.filter((income) => !income.exempt);
+function BalanceBox({ incomeArray, donationsArray, updatePage, user }) {
+ //get income array with incomes to exempt
+  const incomToMaaser = incomeArray
+    ? incomeArray.filter((income) => income.exempt === false)
+    : 0;
   return (
     <div>
       <div className="header-container">
@@ -15,13 +18,18 @@ function BalanceBox({ incomeArray, donationsArray }) {
         $
         {(
           GetTotal(donationsArray) -
-          GetTotal(incomToMaaser) / 10
+          (incomToMaaser.length > 0
+            ? GetTotal(incomToMaaser) / (100 / Number(user.userPercent))
+            : 0)
         ).toLocaleString("en-US", numberSettings)}{" "}
         <span className="price-currency">(USD)</span>
       </h1>
       <p>From Jan 01, 2023 to May 24, 2023</p>
       <div className="button-box">
-        <button className="btn btn-purple">
+        <button
+          className="btn btn-purple"
+          onClick={() => updatePage("Donations")}
+        >
           <FontAwesomeIcon icon={faCircleDollarToSlot} size="xl" />
 
           <span>Donate</span>

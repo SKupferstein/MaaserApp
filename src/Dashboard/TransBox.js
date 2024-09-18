@@ -1,35 +1,38 @@
 import "./TransBox.css";
-import TransBox_Box from "./TransBox_Box";
+import TransBoxBox from "./TransBox_Box";
 import Card from "../Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandHoldingDollar,
-  faXmark,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import { catagories } from "../Catagories";
 
-function TransBox({ incomeArray, donationsArray }) {
+//tansbox is a container for the two transaction boxes
+function TransBox({ incomeArray, donationsArray, updatePage, page }) {
+  //array of info for the transaction boxes
   const boxInfo = [
     {
       title: "Income History",
       header: "Company",
       lastColumn: "Exempt from Maaser",
       activities: incomeArray,
+      page: "Income",
     },
     {
       title: "Donation History",
       header: "Orgenization",
       lastColumn: "Category",
       activities: donationsArray,
+      page: "Donations",
     },
   ];
   return (
     <div>
-      {boxInfo.map(function (item) {
+      {boxInfo.map(function (item, index) {
+        //map through the array to create both boxes
         return (
-          <Card>
-            <TransBox_Box box={item} displayNumber={3}></TransBox_Box>
+          <Card key={index}>
+            <TransBoxBox
+              box={item}
+              key={index}
+              updatePage={updatePage}
+              page={page}
+            ></TransBoxBox>
           </Card>
         );
       })}

@@ -3,9 +3,9 @@ import Card from "../Card";
 import TotalBox from "./TotalBox";
 import TransBox from "./TransBox";
 
-function Main_Left({ incomeArray, donationsArray }) {
+function MainLeft({ incomeArray, donationsArray, updatePage, page }) {
   return (
-    <div class="bottom-container__left">
+    <div className="bottom-container__left">
       <Card>
         <TotalBox
           incomeArray={incomeArray}
@@ -16,9 +16,11 @@ function Main_Left({ incomeArray, donationsArray }) {
       <TransBox
         incomeArray={incomeArray}
         donationsArray={donationsArray}
+        updatePage={updatePage}
+        page={page}
       ></TransBox>
     </div>
   );
 }
 
-export default Main_Left;
+export default MainLeft;

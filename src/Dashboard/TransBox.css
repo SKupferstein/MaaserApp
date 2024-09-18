@@ -2,7 +2,8 @@
   margin-bottom: 20px;
 }
 
-.transaction-history {
+.transaction-history,
+tr {
   width: 100%;
   text-align: left;
   vertical-align: middle;

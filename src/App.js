@@ -1,117 +1,93 @@
 import "./App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import ModalLogin from "./Modal_Login.js";
 import Sidebar from "./SideBar";
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import { useState } from "react";
-import Income from "./Income";
-import { catagories } from "./Catagories";
+import Income from "./Income/Income.js";
+import Donations from "./Donations/Donations.js";
+import { GetYear } from "./GetDateFunction.js";
+import Logout from "./Logout.js";
+import Settings from "./Settings.js";
+import Inbox from "./Inbox.js";
 
 function App() {
-  const [page, updatePage] = useState("Dashboard");
-  const [yes, no] = [
-    { Catagory: "Yes", icon: faCheck },
-    { Catagory: "No", icon: faXmark },
-  ];
-  const [incomeArray, updateIncomeArray] = useState([
-    {
-      name: "Compuskills",
-      date: "Jan 01,2023",
-      amount: 5000,
-      exempt: true,
-    },
-    {
-      name: "Agency",
-      date: "Jan 01,2023",
-      amount: 2000,
-      exempt: false,
-    },
-    {
-      name: "Agency",
-      date: "Jan 01,2023",
-      amount: 2000,
-      exempt: false,
-    },
-    {
-      name: "Agency",
-      date: "Jan 01,2023",
-      amount: 2000,
-      exempt: true,
-    },
-    {
-      name: "Agency",
-      date: "Jan 01,2023",
-      amount: 2000,
-      exempt: false,
-    },
-    {
-      name: "Agency",
-      date: "Jan 01,2023",
-      amount: 2000,
-      exempt: false,
-    },
-    {
-      name: "Tax returns",
-      date: "Jan 01,2023",
-      amount: 3000,
-      exempt: true,
-    },
-  ]);
-  const [donationsArray, updateDonations] = useState([
-    {
-      name: "Yad Eliezer",
-      date: "Jan 01,2023",
-      amount: 100,
-      catagory: 2,
-    },
-    {
-      name: "The Kallah Fund",
-      date: "Jan 01,2023",
-      amount: 200,
-      catagory: 0,
-    },
-    {
-      name: "Kollel",
-      date: "Jan 01,2023",
-      amount: 100,
-      catagory: 3,
-    },
-    {
-      name: "Kollel",
-      date: "Jan 01,2023",
-      amount: 50,
-      catagory: 2,
-    },
-    {
-      name: "Kollel",
-      date: "Jan 01,2023",
-      amount: 50,
-      catagory: 1,
-    },
-  ]);
+  const [page, updatePage] = useState("Dashboard"); //state to change pages
+
+  const [user, updateUser] = useState({}); //state to load user info
+
+  const [dates, updateDates] = useState({
+    start: GetYear() + "-01-01",
+    end: GetYear() + "-12-31",
+  }); //state to update dates - default is for current year
+
+  const [incomeArray, updateIncomeArray] = useState([]);
+
+  const [donationsArray, updateDonationsArray] = useState([]);
 
   return (
-    <body>
-      <div className="container">
-        <Sidebar updatePage={updatePage} page={page}></Sidebar>
-        <main class="main-content">
-          <Header></Header>
-          {page == "Dashboard" && (
-            <Dashboard
-              incomeArray={incomeArray}
-              donationsArray={donationsArray}
-            ></Dashboard>
-          )}
-          {page == "Income" && <Income incomeArray={incomeArray}></Income>}
-          {page == "Donations" && <div>You are in donations</div>}
-          {page == "Inbox" && <div>You are in Inbox</div>}
-          {page == "Settings" && <div>You are in Settings</div>}
-        </main>
-      </div>
+    <div>
+      <ModalLogin
+        updateUser={updateUser}
+        updateIncomeArray={updateIncomeArray}
+        updateDonationsArray={updateDonationsArray}
+        dates={dates}
+      ></ModalLogin>
+
+      {page !== "Logout" && (
+        <div className="container">
+          <Sidebar updatePage={updatePage} page={page}></Sidebar>
+
+          <main className="main-content">
+            <Header
+              user={user}
+              updatePage={updatePage}
+              dates={dates}
+              updateDates={updateDates}
+              updateIncomeArray={updateIncomeArray}
+              updateDonationsArray={updateDonationsArray}
+            ></Header>
+
+            {page === "Dashboard" && (
+              <Dashboard
+                incomeArray={incomeArray}
+                donationsArray={donationsArray}
+                updatePage={updatePage}
+                page="Dashboard"
+                user={user}
+              ></Dashboard>
+            )}
+
+            {page === "Income" && (
+              <Income
+                incomeArray={incomeArray}
+                updateIncomeArray={updateIncomeArray}
+                user={user}
+              ></Income>
+            )}
+
+            {page === "Donations" && (
+              <Donations
+                donationsArray={donationsArray}
+                updateDonationsArray={updateDonationsArray}
+                user={user}
+              ></Donations>
+            )}
+
+            {page === "Inbox" && <Inbox></Inbox>}
+
+            {page === "Settings" && (
+              <Settings updateUser={updateUser} user={user}></Settings>
+            )}
+          </main>
+        </div>
+      )}
+      {page === "Logout" && <Logout></Logout>}
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </body>
+    </div>
   );
 }
 

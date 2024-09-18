@@ -1,23 +1,23 @@
 import "./TotalBox.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDollarSign,
   faHandHoldingHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import Total_comp from "./Total_comp";
+import TotalComp from "./Total_comp";
 import { GetTotal } from "./Totals";
 
 function TotalBox({ incomeArray, donationsArray }) {
+  //details for the 2 sides of the total box
   const totalComps = [
     {
-      rl: "left",
+      side: "left",
       header: "Income",
       icon: faDollarSign,
       total: GetTotal(incomeArray),
       percent: 100,
     },
     {
-      rl: "right",
+      side: "right",
       header: "Donations",
       icon: faHandHoldingHeart,
       total: GetTotal(donationsArray),
@@ -25,17 +25,17 @@ function TotalBox({ incomeArray, donationsArray }) {
     },
   ];
   return (
-    <div class="box total-box">
+    <div className="box total-box">
       {totalComps.map((comp, index) => {
         return (
-          <Total_comp
-            rl={comp.rl}
+          <TotalComp
+            side={comp.side}
             header={comp.header}
             icon={comp.icon}
             total={comp.total}
             percent={comp.percent}
             key={index}
-          ></Total_comp>
+          ></TotalComp>
         );
       })}
     </div>

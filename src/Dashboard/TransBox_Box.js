@@ -1,82 +1,64 @@
 import "./TransBox_Box.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandHoldingDollar,
-  faCircleDollarToSlot,
-  faAngleDown,
-  faXmark,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import { numberSettings } from "../NumberSettings";
-import { catagories } from "../Catagories";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import TransboxItem from "./TransboxItem";
 
-function TransBox_Box({ box, displayNumber }) {
+//transBoxBox is a single transactions box - incomes or donations
+
+function TransBoxBox({ box, updatePage, page, updateArray, activateEditForm }) {
   return (
-    <div class="transaction-box">
-      <div class="header-container">
-        <h3 class="section-header">{box.title}</h3>
+    <div className="transaction-box">
+      <div className="header-container">
+        <h3 className="section-header">{box.title}</h3>
       </div>
-      <table class="transaction-history">
-        <tr>
-          <th>{box.header}</th>
-          <th>
-            Date
-            <FontAwesomeIcon icon={faAngleDown} />
-          </th>
-          <th>
-            Amount
-            <FontAwesomeIcon icon={faAngleDown} />
-          </th>
-          <th>
-            {box.lastColumn}
-            <FontAwesomeIcon icon={faAngleDown} />
-          </th>
-        </tr>
-        {box.activities.slice(0, displayNumber).map(function (item) {
-          return (
-            <tr>
-              <td>
-                <FontAwesomeIcon icon={faCircleDollarToSlot} size="xl" />
-                {item.name}
-              </td>
-              <td>{item.date}</td>
-              <td>${item.amount.toLocaleString("en-US", numberSettings)}</td>
-              <td>
-                {item.catagory >= 0 && (
-                  <div className="pie-chart__labels-item">
-                    <div className="label">
-                      <div
-                        className={`label__color ${
-                          catagories[item.catagory].class
-                        }`}
-                      ></div>
-                      {catagories[item.catagory].name}
-                    </div>
-                  </div>
-                )}
-                {item.exempt == true && (
-                  <div>
-                    <FontAwesomeIcon icon={faCheck} size="xl" />
-                    &nbsp;Yes
-                  </div>
-                )}
-                {item.exempt == false && (
-                  <div>
-                    <FontAwesomeIcon icon={faXmark} size="xl" />
-                    &nbsp;No
-                  </div>
-                )}
-              </td>
-            </tr>
-          );
-        })}
+      <table className="transaction-history">
+        <thead>
+          <tr>
+            <th>{box.header}</th>
+            <th>
+              Date
+              <FontAwesomeIcon icon={faAngleDown} />
+            </th>
+            <th>
+              Amount
+              <FontAwesomeIcon icon={faAngleDown} />
+            </th>
+            <th>
+              {box.lastColumn}
+              <FontAwesomeIcon icon={faAngleDown} />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {box.activities &&
+            box.activities
+              .slice(0, page !== "Dashboard" ? box.activities.length : 5) //limit number of items for the dashboard
+              .map(function (item, index) {
+                return (
+                  <TransboxItem
+                    item={item}
+                    key={index}
+                    updateArray={updateArray}
+                    page={page}
+                    activateEditForm={activateEditForm}
+                  ></TransboxItem>
+                );
+              })}
+        </tbody>
       </table>
-      <div class="footer-container ">
-        <button class="btn btn-white ">See More..</button>
-      </div>
+      {page === "dashboard" && ( //add "see more" button to dachboard transaction boxes
+        <div className="footer-container ">
+          <button
+            className="btn btn-white "
+            onClick={() => updatePage(box.page)}
+          >
+            See More..
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default TransBox_Box;
+export default TransBoxBox;

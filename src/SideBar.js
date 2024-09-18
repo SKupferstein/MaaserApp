@@ -1,5 +1,4 @@
 import "./SideBar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouseChimney,
   faMoneyBillTrendUp,
@@ -8,10 +7,10 @@ import {
   faArrowRightFromBracket,
   faMessage,
 } from "@fortawesome/free-solid-svg-icons";
-import SideNav_Item from "./SideNav_Item";
-import { useState } from "react";
+import SideNavItem from "./SideNav_Item";
 
 function Sidebar({ updatePage, page }) {
+  //array for sidebar
   const sidebar_list = [
     {
       tag: "Dashboard",
@@ -22,7 +21,7 @@ function Sidebar({ updatePage, page }) {
     { tag: "Inbox", icon: faMessage },
     { tag: "Settings", icon: faGear },
     {
-      tag: "Log Out",
+      tag: "Logout",
       icon: faArrowRightFromBracket,
     },
   ];
@@ -31,18 +30,18 @@ function Sidebar({ updatePage, page }) {
     <div>
       <nav className="sidebar">
         <div className="sidebar__logo">
-          <h2 className="sidebar__logo-header">The Ma'aser App</h2>
+          <h1 className="sidebar__logo-header">The Ma'aser App</h1>
         </div>
         <ul className="side-nav">
           {sidebar_list.map((list_item, index) => {
             return (
-              <SideNav_Item
+              <SideNavItem
                 tag={list_item.tag}
                 icon={list_item.icon}
                 key={index}
                 updatePage={updatePage}
                 page={page}
-              ></SideNav_Item>
+              ></SideNavItem>
             );
           })}
         </ul>
