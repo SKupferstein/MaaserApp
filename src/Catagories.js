@@ -12,11 +12,11 @@ export const catagories = [
   {
     name: "Medical Institutions",
     class: "third",
-    color: "#7c5cfc",
+    color: "#cc6ff8",
   },
   {
     name: "Torah Institutions",
     class: "fourth",
-    color: " #cc6ff8",
+    color: " #7c5cfc",
   },
 ];

@@ -3,13 +3,15 @@ import BalanceBox from "./BalanceBox";
 import Card from "../Card";
 import SpendingBox from "./SpendingBox";
 
-function Main_Right({ incomeArray, donationsArray }) {
+function MainRight({ incomeArray, donationsArray, updatePage, user }) {
   return (
     <div className="bottom-container__right">
       <Card>
         <BalanceBox
           incomeArray={incomeArray}
           donationsArray={donationsArray}
+          updatePage={updatePage}
+          user={user}
         ></BalanceBox>
       </Card>
       <Card>
@@ -19,4 +21,4 @@ function Main_Right({ incomeArray, donationsArray }) {
   );
 }
 
-export default Main_Right;
+export default MainRight;

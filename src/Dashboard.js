@@ -1,19 +1,23 @@
 import "./Dashboard.css";
-import Card from "./Card";
-import Main_Left from "./Dashboard/Main_Left";
-import Main_Right from "./Dashboard/Main_Right";
+import MainLeft from "./Dashboard/Main_Left";
+import MainRight from "./Dashboard/Main_Right";
 
-function Dashboard({ incomeArray, donationsArray }) {
+function Dashboard({ incomeArray, donationsArray, updatePage, page, user }) {
   return (
     <div className="bottom-container">
-      <Main_Left
+      <MainLeft
         incomeArray={incomeArray}
         donationsArray={donationsArray}
-      ></Main_Left>
-      <Main_Right
+        updatePage={updatePage}
+        page={page}
+      ></MainLeft>
+
+      <MainRight
         incomeArray={incomeArray}
         donationsArray={donationsArray}
-      ></Main_Right>
+        updatePage={updatePage}
+        user={user}
+      ></MainRight>
     </div>
   );
 }
