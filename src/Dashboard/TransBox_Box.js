@@ -7,6 +7,50 @@ import TransboxItem from "./TransboxItem";
 //transBoxBox is a single transactions box - incomes or donations
 
 function TransBoxBox({ box, updatePage, page, updateArray, activateEditForm }) {
+  const newArray = [...box.activities];
+  const test = [
+    { name: "Orange", number: 20 },
+    { name: "Red", number: 45 },
+    { name: "Blue", number: 12 },
+    { name: "Green", number: 30 },
+  ];
+  function SortDateHandler() {
+    newArray.sort(function (a, b) {
+      if (a.date < b.date) {
+        return -1;
+      }
+      if (a.date > b.date) {
+        return 1;
+      }
+      return 0;
+    });
+    updateArray(newArray);
+  }
+  function SortAmountHandler() {
+    newArray.sort(function (a, b) {
+      if (a.amount < b.amount) {
+        return -1;
+      }
+      if (a.amount > b.amount) {
+        return 1;
+      }
+      return 0;
+    });
+    updateArray(newArray);
+  }
+  function SortNameHandler() {
+    newArray.sort(function (a, b) {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+    updateArray(newArray);
+  }
+
   return (
     <div className="transaction-box">
       <div className="header-container">
@@ -15,19 +59,19 @@ function TransBoxBox({ box, updatePage, page, updateArray, activateEditForm }) {
       <table className="transaction-history">
         <thead>
           <tr>
-            <th>{box.header}</th>
+            <th>
+              {box.header}
+              <FontAwesomeIcon icon={faAngleDown} onClick={SortNameHandler} />
+            </th>
             <th>
               Date
-              <FontAwesomeIcon icon={faAngleDown} />
+              <FontAwesomeIcon icon={faAngleDown} onClick={SortDateHandler} />
             </th>
             <th>
               Amount
-              <FontAwesomeIcon icon={faAngleDown} />
+              <FontAwesomeIcon icon={faAngleDown} onClick={SortAmountHandler} />
             </th>
-            <th>
-              {box.lastColumn}
-              <FontAwesomeIcon icon={faAngleDown} />
-            </th>
+            <th>{box.lastColumn}</th>
           </tr>
         </thead>
         <tbody>
